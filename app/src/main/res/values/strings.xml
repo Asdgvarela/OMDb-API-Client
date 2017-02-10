@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">OMDb API Client</string>
+    <string name="noMovie">You have to enter a title</string>
+</resources>
