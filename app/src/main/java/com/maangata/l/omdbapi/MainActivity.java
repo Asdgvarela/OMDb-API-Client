@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     public TextView text, textWhileSearching;
     public EditText edit;
     public Button goButton;
+    public final int FROM_MAINACTIVITY = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, R.string.noMovie, Toast.LENGTH_SHORT).show();
                 } else {
                     // Launching the AsynTask that will retrieve the JSON info from the OMDb: an array with the hits.
-                    GettingTheData_AsyncTask mJSONInfo = new GettingTheData_AsyncTask(getApplicationContext(), bar, textWhileSearching);
+                    GettingTheData_AsyncTask mJSONInfo = new GettingTheData_AsyncTask(getApplicationContext(), bar, textWhileSearching, FROM_MAINACTIVITY);
                     mJSONInfo.execute(edit.getText().toString().trim());
                     // While it's searching it displays a message with the name of the movie.
                     textWhileSearching.setText("Searching for the movie... " + edit.getText().toString().trim());

@@ -2,7 +2,6 @@ package com.maangata.l.omdbapi;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.media.ThumbnailUtils;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -17,8 +16,10 @@ import java.net.URL;
  */
 public class GetTheImages_Asynk extends AsyncTask<String, Void, Bitmap> {
 
-    ImageView fromTheFragment;
+    private ImageView fromTheFragment;
     int whereItComesFrom;
+    public final int FROM_FRAGMENT = 000;
+    public final int FROM_DETAILS = 111;
 
     /**
      * Creates the constructor for the the AsyncTask.
@@ -63,13 +64,13 @@ public class GetTheImages_Asynk extends AsyncTask<String, Void, Bitmap> {
     @Override
     protected void onPostExecute(Bitmap bitmap) {
         // If the AsyncTask was thrown from the Adapter, to show it in the LIstView, create a Thumbnail with the built-in tools and show it.
-        if (whereItComesFrom == 0) {
+        if (whereItComesFrom == FROM_FRAGMENT) {
             // It comes from the Adapter.
             bitmap = ThumbnailUtils.extractThumbnail(bitmap, bitmap.getWidth()/2, bitmap.getWidth()/2);
             fromTheFragment.setImageBitmap(bitmap);
 
             // If it was called from the Details_Activity, scale it making it bigger and display it in the ImageView.
-        } else if (whereItComesFrom == 1) {
+        } else if (whereItComesFrom == FROM_DETAILS) {
             // It comes from Details.
             bitmap = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth()*3, bitmap.getHeight()*3, true);
             fromTheFragment.setImageBitmap(bitmap);

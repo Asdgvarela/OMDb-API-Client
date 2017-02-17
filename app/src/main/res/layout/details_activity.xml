@@ -16,34 +16,36 @@
                 android:id="@+id/imageDetails"
                 android:src="@android:drawable/ic_menu_camera" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/titleDetails"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                android:text="Alien" />
+
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/titleDetails"
-                    android:textSize="20dp"
-                    android:textColor="#000000"
-                    android:text="Alien" />
-
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/titleDetails">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:id="@+id/yearDetails"
                     android:text="1979"
                     android:paddingTop="5dp"
-                    android:paddingLeft="10dp"
-                    android:layout_toRightOf="@+id/titleDetails"/>
+                    android:paddingLeft="10dp"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/rateDetails"
+                    android:paddingTop="5dp"
+                    android:paddingLeft="16dp"
+                    android:layout_alignParentRight="true"
+                    android:paddingRight="18dp"/>
             </RelativeLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/rateDetails"
-                android:paddingTop="5dp"
-                android:paddingLeft="16dp"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"

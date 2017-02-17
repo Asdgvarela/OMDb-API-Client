@@ -5,40 +5,33 @@
     android:layout_height="match_parent"
     android:padding="8dp">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageListItem"
-        android:src="@android:drawable/ic_menu_camera"/>
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/titleLayout"
-        android:layout_toRightOf="@+id/imageListItem"
-        android:paddingLeft="8dp">
-
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/titleListItem"
-            android:text="Star Wars blablablablablab"
-            android:textSize="18dp"
-            android:textColor="#000000"/>
+            android:id="@+id/imageListItem"
+            android:src="@android:drawable/ic_menu_camera"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/directorListItem"
-            android:layout_below="@+id/titleListItem"/>
+            android:id="@+id/titleLayout"
+            android:layout_toRightOf="@+id/imageListItem"
+            android:paddingLeft="8dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/yearListItem"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/titleListItem"
-            android:paddingRight="18dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/titleListItem"
+                android:text="Star Wars blablablablablab"
+                android:textSize="18dp"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/yearListItem"
+                android:layout_below="@id/titleListItem"
+                android:paddingRight="18dp"/>
 
     </RelativeLayout>
 </LinearLayout>
