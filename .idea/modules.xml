@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/OMDbAPI.iml" filepath="$PROJECT_DIR$/OMDbAPI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/OMDb-API-Client.iml" filepath="$PROJECT_DIR$/OMDb-API-Client.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

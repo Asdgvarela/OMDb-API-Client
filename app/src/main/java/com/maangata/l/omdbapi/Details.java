@@ -21,6 +21,7 @@ public class Details extends AppCompatActivity {
     public TextView title, year, rated, released, runtime, genre, director, writer, actor, plot, language, country, awards, metascore, imdbrating, imdbvotes, imdbid;
     public ImageView poster;
     public ArrayList<String> myArrayList;
+    private final int FROM_DETAILS = 111;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,6 @@ public class Details extends AppCompatActivity {
 
         setTheViews();
     }
-
 
     /*
     This method sets the different views that compound the Details_Activity.
@@ -90,7 +90,7 @@ public class Details extends AppCompatActivity {
             poster = (ImageView) findViewById(R.id.imageDetails);
 
             // I call the AsyncTask in order to get the image in runtime and not save it in the device. It uses another thread so it won't collapse the UI one.
-            GetTheImages_Asynk myImageAsync = new GetTheImages_Asynk(poster, 111);
+            GetTheImages_Asynk myImageAsync = new GetTheImages_Asynk(poster, FROM_DETAILS);
             myImageAsync.execute(myMovie.getPoster());
         }
     }

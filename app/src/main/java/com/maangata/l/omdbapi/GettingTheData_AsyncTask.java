@@ -97,8 +97,8 @@ public class GettingTheData_AsyncTask extends AsyncTask<String, Void, ArrayList<
             for (int i = 0; i < mJSONListOfFilmsArray.length(); i++) {
 
                 JSONObject movieInfo = mJSONListOfFilmsArray.getJSONObject(i);
-                String theInfoToPutIntoTheArray = movieInfo.getString(ACCESS_TITLE) + "sep" + movieInfo.getString(ACCESS_YEAR)
-                        + "sep" + movieInfo.getString(ACCESS_TYPE) + "sep" + movieInfo.getString(ACCESS_POSTER) + "sep" + movieInfo.getString(ACCESS_IMDBID);
+                String theInfoToPutIntoTheArray = movieInfo.getString(ACCESS_TITLE) + "-----" + movieInfo.getString(ACCESS_YEAR)
+                        + "-----" + movieInfo.getString(ACCESS_TYPE) + "-----" + movieInfo.getString(ACCESS_POSTER) + "-----" + movieInfo.getString(ACCESS_IMDBID);
                 mListToPass.add(i, theInfoToPutIntoTheArray);
             }
 

@@ -56,7 +56,7 @@ public class ResultsFragment extends android.support.v4.app.Fragment implements 
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                    String[] mStringArrayToGetTheIMDbID = mArrayWithJSONInfo.get(i).split("sep");
+                    String[] mStringArrayToGetTheIMDbID = mArrayWithJSONInfo.get(i).split("-----");
                     GettingTheData_AsyncTask detailsOfMovie = new GettingTheData_AsyncTask(getContext(), null, null, FROM_FRAGMENT);
                     detailsOfMovie.execute(mStringArrayToGetTheIMDbID[4]);
                 }

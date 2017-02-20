@@ -20,6 +20,4 @@ public class ResultList_Activity extends AppCompatActivity {
                     .commit();
         }
     }
-
-
 }

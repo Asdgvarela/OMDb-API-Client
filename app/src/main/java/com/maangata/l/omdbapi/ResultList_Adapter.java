@@ -24,9 +24,9 @@ public class ResultList_Adapter extends ArrayAdapter<String> {
     public ArrayList<String> myList;
     public Context mContext;
     public final int FROM_ADAPTER = 000;
+    private int cacheSize;
 
     private LruCache<String, Bitmap> mMemoryCache;
-
 
     /**
      * It's called to create the adapter
@@ -39,6 +39,21 @@ public class ResultList_Adapter extends ArrayAdapter<String> {
         mContext = context;
         myList = objects;
 
+        // Gets the max memory available to store the images in the cache.
+        final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+
+        // It determines the quantity of memory that will be used it the cache storing. It'll be 1/8th of the maximun available.
+        // It stores it into an int.
+        cacheSize = maxMemory / 8;
+
+        mMemoryCache = new LruCache<String, Bitmap>(cacheSize) {
+            @Override
+            protected int sizeOf(String key, Bitmap bitmap) {
+                // The cache size will be measured in kilobytes rather than
+                // number of items.
+                return bitmap.getByteCount() / 1024;
+            }
+        };
     }
 
     @Override
@@ -46,7 +61,7 @@ public class ResultList_Adapter extends ArrayAdapter<String> {
 
         View listItem = convertView;
         ViewHolder viewHolder = null;
-        String[] myStringArray = myList.get(position).split("sep");
+        String[] myStringArray = myList.get(position).split("-----");
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         listItem = inflater.inflate(R.layout.item_adapter_results, parent, false);
@@ -59,15 +74,25 @@ public class ResultList_Adapter extends ArrayAdapter<String> {
         // directorView.setText(myStringArray[1]);
         viewHolder.yearView.setText(myStringArray[1]);
 
+        String picName = myStringArray[4];
+        final Bitmap bitmap = getBitmapFromMemCache(picName);
+        if (bitmap != null) {
+            viewHolder.imageView.setImageBitmap(bitmap);
+        } else {
+            GetTheImages_Asynk image = new GetTheImages_Asynk(viewHolder.imageView, FROM_ADAPTER, picName, mMemoryCache);
+            image.execute(myStringArray[3]);
+        }
         // The AsyncTask that is supposed to retrieve the image from the OMDb is called. The bitmap is set in the ImageView.
-        GetTheImages_Asynk image = new GetTheImages_Asynk(viewHolder.imageView, FROM_ADAPTER);
-        image.execute(myStringArray[3]);
+        // GetTheImages_Asynk image = new GetTheImages_Asynk(viewHolder.imageView, FROM_ADAPTER, myStringArray[0]);
+        // image.execute(myStringArray[3]);
 
         // The view is returned.
         return listItem;
     }
 
-
+    /**
+     * Creates a class that will make easier the management of the different views in the adapter.
+     */
     public static class ViewHolder {
         public final TextView titleView;
         public final TextView yearView;
@@ -81,12 +106,11 @@ public class ResultList_Adapter extends ArrayAdapter<String> {
         }
     }
 
-    public void addBitmapToMemoryCache(String key, Bitmap bitmap) {
-        if (getBitmapFromMemCache(key) == null) {
-            mMemoryCache.put(key, bitmap);
-        }
-    }
-
+    /**
+     * Gets the bitmap that was stored in the cache memory.
+     * @param key The name given to the bitmap.
+     * @return Returns the bitmap from the cache memory.
+     */
     public Bitmap getBitmapFromMemCache(String key) {
         return mMemoryCache.get(key);
     }
